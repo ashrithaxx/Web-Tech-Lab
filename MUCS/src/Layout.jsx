@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
-// Reusable Dropdown component — receives title & items via props,
-// uses useState + onClick to toggle open/closed.
 function Dropdown({ title, items }) {
   const [isOpen, setIsOpen] = useState(false)
   return (
