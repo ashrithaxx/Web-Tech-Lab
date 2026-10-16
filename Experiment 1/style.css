@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&displa y=swap');
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter', sans-serif; background: #F5F7F2; color: #1F2A24; }
+.page { min-height: 100vh; padding: 32px 20px; }
+
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 34px; margin: 0; color: #22333B; }
+.header p { color: #5B6B60; margin
+
+.search { display: block; width: 100%; max-width: 480px; margin: 0 auto 24px; padding: 12px 16px; border-radius: 10px; border: 2px solid #DDE3D8; font-size: 15px; outline: none; }
+
+.body { display: flex; gap: 24px; max-width: 1100px; margin: 0 auto; align-items: flex-start; }
+.main { flex: 1; min-width: 0; }
+
+.sidebar { width: 190px; flex-shrink: 0; background: #fff; border-radius: 14px; padding: 18px 16px; border: 1px solid #EAEEE6; box-shadow: 0 2px 10px rgba(34,51,59,0.06); position: sticky; top: 20px; }
+.filterBlock { margin-bottom: 22px; }
+.filterBlock h4 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: #8A9188; margin: 0 0 10px; }
+.sideBtn { display: block; width: 100%; text-align: left; padding: 8px 10px; margin-bottom: 6px; border-radius: 8px; border: none; background: transparent; color: #22333B; font-size: 14px; cursor: pointer; }
+.sideBtn.active { background: #22333B; color: #fff; font-weight: 500; }
+.sideBtn.priceActive { background: #F2A541; color: #fff; font-weight: 500; }
+
+.count { color: #5B6B60; margin-bottom: 16px; }
+.empty { text-align: center; padding: 40px; font-size: 18px; color: #8A9188; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+
+.card { background: #fff; border-radius: 14px; padding: 18px; position: relative; box-shadow: 0 2px 10px rgba(34,51,59,0.08); border: 1px solid #EAEEE6; }
+.card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; margin: 10px 0 4px; }
+.cardCategory { font-size: 12px; color: #8A9188; margin: 0 0 8px; }
+.cardPrice { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: #22333B; margin: 0; }
+.strike { font-size: 13px; font-weight: 400; color: #A9B2A7; text-decoration: line-through; }
+
+.tag, .discountBadge { position: absolute; top: -10px; font-size: 11px; font-weight: 600; color: #fff; padding: 4px 10px; border-radius: 6px; }
+.tag { right: 14px; }
+.tag.in { background: #3F9166; }
+.tag.out { background: #8A9188; }
+
+.discountBadge { left: 14px; background: #F2A541; font-weight: 700; }
+
+.card.outOfStock { background: #E4E7E0; border-color: #D8DCD3; }
+.card.outOfStock h3,
+.card.outOfStock .cardPrice { color: #9198A0; }
+.card.outOfStock .cardCategory { color: #A6ADA3; }
+.card.outOfStock .strike { text-decoration: none; }
