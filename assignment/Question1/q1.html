@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student List</title>
+<style>
+  body{font-family:Arial,sans-serif;background:#f4f6f9;margin:0;padding:20px;color:#222}
+  .wrap{max-width:800px;margin:auto}
+  h1{text-align:center;color:#2c3e50}
+  .card{background:#fff;padding:16px 20px;border-radius:8px;box-shadow:0 1px 4px #0002;margin-bottom:20px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:8px;border-bottom:1px solid #ddd;text-align:left}
+  th{background:#2c3e50;color:#fff}
+  input{width:100%;padding:8px;margin:4px 0 12px;border:1px solid #bbb;border-radius:4px;box-sizing:border-box}
+  button{background:#2c3e50;color:#fff;border:0;padding:8px 16px;border-radius:4px;cursor:pointer}
+  .msg{margin-top:10px;padding:8px;border-radius:4px;display:none}
+  .ok{background:#d4edda;color:#155724;display:block}
+  .err{background:#f8d7da;color:#721c24;display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Student List</h1>
+  <div class="card">
+    <h2>Student List (GET)</h2>
+    <button onclick="loadStudents()">Reload</button>
+    <div id="listMsg" class="msg"></div>
+    <table>
+      <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const API = "students.json";
+
+function show(el, text, ok) {
+  el.textContent = text;
+  el.className = "msg " + (ok ? "ok" : "err");
+}
+
+function statusText(s) {
+  const m = {400:"Bad Request",401:"Unauthorized",403:"Forbidden",404:"Not Found",500:"Internal Server Error"};
+  return `Error ${s}: ${m[s] || "Request failed"}`;
+}
+
+async function loadStudents() {
+  const msg = document.getElementById("listMsg");
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
+  try {
+    const res = await fetch(API);
+    if (res.status === 200) {
+      const data = await res.json();
+      tbody.innerHTML = data.map(s =>
+        `<tr><td>${s.id}</td><td>${s.name}</td><td>${s.email}</td><td>${s.phone}</td></tr>`).join("");
+      show(msg, `Loaded ${data.length} students (HTTP 200)`, true);
+    } else {
+      show(msg, statusText(res.status), false);
+    }
+  } catch (e) {
+    show(msg, "Network error: unable to reach server", false);
+  }
+}
+
+loadStudents();
+</script>
+</body>
+</html>
